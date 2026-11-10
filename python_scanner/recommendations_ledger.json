@@ -1,0 +1,558 @@
+{
+  "active_recommendations": {
+    "MCX.NS": {
+      "ticker": "MCX.NS",
+      "company_name": "MULTI COMMODITY EXCHANGE",
+      "sector": "Commodity Exchange",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 3249.0,
+      "target_1yr_2x": 6498.0,
+      "stop_loss": 2726.57,
+      "initial_metrics": {
+        "sales_growth_pct": 85.3,
+        "profit_growth_pct": 103.4,
+        "debt_to_equity": 0.11,
+        "roce_pct": 20.7,
+        "peg_ratio": 0.66,
+        "dcf_1yr_fv": 2838.46,
+        "quant_consensus": 5168.8,
+        "ml_2x_prob_pct": 88.8,
+        "score": 80.7,
+        "grade": "AA"
+      },
+      "current_price": 3249.0,
+      "pnl_pct": 0.0,
+      "status": "ACTIVE",
+      "health_status": "HEALTHY_COMPOUNDER",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 3249.0,
+          "pnl_pct": 0.0,
+          "health_status": "HEALTHY_COMPOUNDER",
+          "warnings": []
+        }
+      ]
+    },
+    "BSE.NS": {
+      "ticker": "BSE.NS",
+      "company_name": "BSE LIMITED",
+      "sector": "Stock Exchange",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 3490.0,
+      "target_1yr_2x": 6980.0,
+      "stop_loss": 3184.62,
+      "initial_metrics": {
+        "sales_growth_pct": 64.0,
+        "profit_growth_pct": 62.1,
+        "debt_to_equity": 0.0,
+        "roce_pct": 20.7,
+        "peg_ratio": 0.82,
+        "dcf_1yr_fv": 4075.35,
+        "quant_consensus": 4665.22,
+        "ml_2x_prob_pct": 45.4,
+        "score": 77.6,
+        "grade": "AA"
+      },
+      "current_price": 3490.0,
+      "pnl_pct": 0.0,
+      "status": "ACTIVE",
+      "health_status": "HEALTHY_COMPOUNDER",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 3490.0,
+          "pnl_pct": 0.0,
+          "health_status": "HEALTHY_COMPOUNDER",
+          "warnings": []
+        }
+      ]
+    },
+    "ANGELONE.NS": {
+      "ticker": "ANGELONE.NS",
+      "company_name": "ANGEL ONE LIMITED",
+      "sector": "Retail Brokerage",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 290.0,
+      "target_1yr_2x": 580.0,
+      "stop_loss": 280.84,
+      "initial_metrics": {
+        "sales_growth_pct": 15.4,
+        "profit_growth_pct": 57.2,
+        "debt_to_equity": 1.14,
+        "roce_pct": 20.3,
+        "peg_ratio": 0.41,
+        "dcf_1yr_fv": 732.85,
+        "quant_consensus": 340.43,
+        "ml_2x_prob_pct": 30.2,
+        "score": 68.1,
+        "grade": "A"
+      },
+      "current_price": 290.0,
+      "pnl_pct": 0.0,
+      "status": "ACTIVE",
+      "health_status": "HEALTHY_COMPOUNDER",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 290.0,
+          "pnl_pct": 0.0,
+          "health_status": "HEALTHY_COMPOUNDER",
+          "warnings": []
+        }
+      ]
+    },
+    "SYRMA.NS": {
+      "ticker": "SYRMA.NS",
+      "company_name": "SYRMA SGS TECHNOLOGY LTD",
+      "sector": "EMS & Electronics",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 1512.0,
+      "target_1yr_2x": 3024.0,
+      "stop_loss": 1239.84,
+      "initial_metrics": {
+        "sales_growth_pct": 74.5,
+        "profit_growth_pct": 77.3,
+        "debt_to_equity": 0.24,
+        "roce_pct": 16.4,
+        "peg_ratio": 0.89,
+        "dcf_1yr_fv": 1297.24,
+        "quant_consensus": 2365.86,
+        "ml_2x_prob_pct": 52.3,
+        "score": 66.8,
+        "grade": "A"
+      },
+      "current_price": 1512.0,
+      "pnl_pct": 0.0,
+      "status": "ACTIVE",
+      "health_status": "HEALTHY_COMPOUNDER",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 1512.0,
+          "pnl_pct": 0.0,
+          "health_status": "HEALTHY_COMPOUNDER",
+          "warnings": []
+        }
+      ]
+    },
+    "NETWEB.NS": {
+      "ticker": "NETWEB.NS",
+      "company_name": "NETWEB TECH INDIA LTD",
+      "sector": "High-End Supercomputing",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 4089.3,
+      "target_1yr_2x": 8178.6,
+      "stop_loss": 3475.91,
+      "initial_metrics": {
+        "sales_growth_pct": 335.7,
+        "profit_growth_pct": 324.1,
+        "debt_to_equity": 0.16,
+        "roce_pct": 30.0,
+        "peg_ratio": 0.2,
+        "dcf_1yr_fv": 3792.2,
+        "quant_consensus": 5128.91,
+        "ml_2x_prob_pct": 64.4,
+        "score": 65.6,
+        "grade": "A"
+      },
+      "current_price": 4089.3,
+      "pnl_pct": 0.0,
+      "status": "ACTIVE_CAUTION",
+      "health_status": "WATCH_CAUTION",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 4089.300048828125,
+          "pnl_pct": 0.0,
+          "health_status": "WATCH_CAUTION",
+          "warnings": []
+        }
+      ]
+    },
+    "SOLARINDS.NS": {
+      "ticker": "SOLARINDS.NS",
+      "company_name": "SOLAR INDUSTRIES (I) LTD",
+      "sector": "Defense & Explosives",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 19438.0,
+      "target_1yr_2x": 38876.0,
+      "stop_loss": 17023.67,
+      "initial_metrics": {
+        "sales_growth_pct": 70.3,
+        "profit_growth_pct": 92.7,
+        "debt_to_equity": 0.23,
+        "roce_pct": 20.7,
+        "peg_ratio": 0.95,
+        "dcf_1yr_fv": 13046.39,
+        "quant_consensus": 24528.57,
+        "ml_2x_prob_pct": 48.1,
+        "score": 65.4,
+        "grade": "A"
+      },
+      "current_price": 19438.0,
+      "pnl_pct": 0.0,
+      "status": "ACTIVE",
+      "health_status": "HEALTHY_COMPOUNDER",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 19438.0,
+          "pnl_pct": 0.0,
+          "health_status": "HEALTHY_COMPOUNDER",
+          "warnings": []
+        }
+      ]
+    },
+    "MOTHERSON.NS": {
+      "ticker": "MOTHERSON.NS",
+      "company_name": "SAMVRDHNA MTHRSN INTL LTD",
+      "sector": "Auto Components",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 159.0,
+      "target_1yr_2x": 318.0,
+      "stop_loss": 138.43,
+      "initial_metrics": {
+        "sales_growth_pct": 16.6,
+        "profit_growth_pct": 104.2,
+        "debt_to_equity": 0.44,
+        "roce_pct": 20.7,
+        "peg_ratio": 0.37,
+        "dcf_1yr_fv": 246.06,
+        "quant_consensus": 211.55,
+        "ml_2x_prob_pct": 39.2,
+        "score": 64.5,
+        "grade": "A"
+      },
+      "current_price": 159.0,
+      "pnl_pct": 0.0,
+      "status": "ACTIVE",
+      "health_status": "HEALTHY_COMPOUNDER",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 159.0,
+          "pnl_pct": 0.0,
+          "health_status": "HEALTHY_COMPOUNDER",
+          "warnings": []
+        }
+      ]
+    },
+    "BHEL.NS": {
+      "ticker": "BHEL.NS",
+      "company_name": "BHEL",
+      "sector": "Growth & Manufacturing",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 394.95,
+      "target_1yr_2x": 789.9,
+      "stop_loss": 360.38,
+      "initial_metrics": {
+        "sales_growth_pct": 23.8,
+        "profit_growth_pct": 118.5,
+        "debt_to_equity": 0.22,
+        "roce_pct": 12.4,
+        "peg_ratio": 0.4,
+        "dcf_1yr_fv": 490.26,
+        "quant_consensus": 585.78,
+        "ml_2x_prob_pct": 48.2,
+        "score": 64.4,
+        "grade": "A"
+      },
+      "current_price": 394.95,
+      "pnl_pct": 0.0,
+      "status": "ACTIVE",
+      "health_status": "HEALTHY_COMPOUNDER",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 394.95001220703125,
+          "pnl_pct": 0.0,
+          "health_status": "HEALTHY_COMPOUNDER",
+          "warnings": []
+        }
+      ]
+    },
+    "MANKIND.NS": {
+      "ticker": "MANKIND.NS",
+      "company_name": "MANKIND PHARMA LIMITED",
+      "sector": "Pharma & OTC",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 2481.2,
+      "target_1yr_2x": 4962.4,
+      "stop_loss": 2298.96,
+      "initial_metrics": {
+        "sales_growth_pct": 17.3,
+        "profit_growth_pct": 38.9,
+        "debt_to_equity": 0.3,
+        "roce_pct": 14.9,
+        "peg_ratio": 1.18,
+        "dcf_1yr_fv": 2892.24,
+        "quant_consensus": 2532.59,
+        "ml_2x_prob_pct": 38.2,
+        "score": 64.1,
+        "grade": "A"
+      },
+      "current_price": 2481.2,
+      "pnl_pct": -0.0,
+      "status": "ACTIVE",
+      "health_status": "HEALTHY_COMPOUNDER",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 2481.199951171875,
+          "pnl_pct": -0.0,
+          "health_status": "HEALTHY_COMPOUNDER",
+          "warnings": []
+        }
+      ]
+    },
+    "COFORGE.NS": {
+      "ticker": "COFORGE.NS",
+      "company_name": "COFORGE LIMITED",
+      "sector": "Enterprise IT",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 2099.0,
+      "target_1yr_2x": 4198.0,
+      "stop_loss": 1721.18,
+      "initial_metrics": {
+        "sales_growth_pct": 54.8,
+        "profit_growth_pct": 19.2,
+        "debt_to_equity": 0.27,
+        "roce_pct": 14.7,
+        "peg_ratio": 2.14,
+        "dcf_1yr_fv": 3021.85,
+        "quant_consensus": 2270.09,
+        "ml_2x_prob_pct": 37.7,
+        "score": 64.0,
+        "grade": "A"
+      },
+      "current_price": 2099.0,
+      "pnl_pct": 0.0,
+      "status": "ACTIVE",
+      "health_status": "HEALTHY_COMPOUNDER",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 2099.0,
+          "pnl_pct": 0.0,
+          "health_status": "HEALTHY_COMPOUNDER",
+          "warnings": []
+        }
+      ]
+    },
+    "HAL.NS": {
+      "ticker": "HAL.NS",
+      "company_name": "HINDUSTAN AERONAUTICS LTD",
+      "sector": "Defense",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 4855.0,
+      "target_1yr_2x": 9710.0,
+      "stop_loss": 4437.88,
+      "initial_metrics": {
+        "sales_growth_pct": 14.4,
+        "profit_growth_pct": 14.9,
+        "debt_to_equity": 0.16,
+        "roce_pct": 20.7,
+        "peg_ratio": 2.34,
+        "dcf_1yr_fv": 2810.8,
+        "quant_consensus": 4981.32,
+        "ml_2x_prob_pct": 29.7,
+        "score": 58.9,
+        "grade": "A"
+      },
+      "current_price": 4855.0,
+      "pnl_pct": 0.0,
+      "status": "ACTIVE",
+      "health_status": "HEALTHY_COMPOUNDER",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 4855.0,
+          "pnl_pct": 0.0,
+          "health_status": "HEALTHY_COMPOUNDER",
+          "warnings": []
+        }
+      ]
+    },
+    "KALYANKJIL.NS": {
+      "ticker": "KALYANKJIL.NS",
+      "company_name": "KALYAN JEWELLERS IND LTD",
+      "sector": "Jewellery Retail",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 505.45,
+      "target_1yr_2x": 1010.9,
+      "stop_loss": 489.1,
+      "initial_metrics": {
+        "sales_growth_pct": 45.7,
+        "profit_growth_pct": 31.6,
+        "debt_to_equity": 0.97,
+        "roce_pct": 20.7,
+        "peg_ratio": 1.15,
+        "dcf_1yr_fv": 822.33,
+        "quant_consensus": 507.65,
+        "ml_2x_prob_pct": 38.2,
+        "score": 57.5,
+        "grade": "B"
+      },
+      "current_price": 505.45,
+      "pnl_pct": 0.0,
+      "status": "ACTIVE_CAUTION",
+      "health_status": "WATCH_CAUTION",
+      "dump_warnings": [],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 505.45001220703125,
+          "pnl_pct": 0.0,
+          "health_status": "WATCH_CAUTION",
+          "warnings": []
+        }
+      ]
+    },
+    "PERSISTENT.NS": {
+      "ticker": "PERSISTENT.NS",
+      "company_name": "PERSISTENT SYSTEMS LTD",
+      "sector": "Cloud & AI Services",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 6051.0,
+      "target_1yr_2x": 12102.0,
+      "stop_loss": 5255.42,
+      "initial_metrics": {
+        "sales_growth_pct": 30.3,
+        "profit_growth_pct": -26.3,
+        "debt_to_equity": 0.07,
+        "roce_pct": 25.2,
+        "peg_ratio": 3.35,
+        "dcf_1yr_fv": 2207.37,
+        "quant_consensus": 6071.92,
+        "ml_2x_prob_pct": 36.7,
+        "score": 55.4,
+        "grade": "B"
+      },
+      "current_price": 6051.0,
+      "pnl_pct": 0.0,
+      "status": "DUMP_WARNING",
+      "health_status": "DUMP_WARNING",
+      "dump_warnings": [
+        "\ud83d\udea8 CRITICAL: Profit turned negative (PAT Growth: -26.3%)"
+      ],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 6051.0,
+          "pnl_pct": 0.0,
+          "health_status": "DUMP_WARNING",
+          "warnings": [
+            "\ud83d\udea8 CRITICAL: Profit turned negative (PAT Growth: -26.3%)"
+          ]
+        }
+      ]
+    },
+    "DEEPAKNTR.NS": {
+      "ticker": "DEEPAKNTR.NS",
+      "company_name": "DEEPAK NITRITE LTD",
+      "sector": "Specialty Chemicals",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 1531.2,
+      "target_1yr_2x": 3062.4,
+      "stop_loss": 1301.52,
+      "initial_metrics": {
+        "sales_growth_pct": 61.8,
+        "profit_growth_pct": 234.8,
+        "debt_to_equity": 0.27,
+        "roce_pct": 19.4,
+        "peg_ratio": 0.08,
+        "dcf_1yr_fv": 4617.37,
+        "quant_consensus": 1343.1,
+        "ml_2x_prob_pct": 42.4,
+        "score": 54.1,
+        "grade": "B"
+      },
+      "current_price": 1531.2,
+      "pnl_pct": -0.0,
+      "status": "DUMP_WARNING",
+      "health_status": "DUMP_WARNING",
+      "dump_warnings": [
+        "\u26a0\ufe0f Stan Weinstein Stage-4 Breakdown: Closed below 200-DMA (\u20b91,616.1)"
+      ],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 1531.199951171875,
+          "pnl_pct": -0.0,
+          "health_status": "DUMP_WARNING",
+          "warnings": [
+            "\u26a0\ufe0f Stan Weinstein Stage-4 Breakdown: Closed below 200-DMA (\u20b91,616.1)"
+          ]
+        }
+      ]
+    },
+    "TITAGARH.NS": {
+      "ticker": "TITAGARH.NS",
+      "company_name": "TITAGARH RAIL SYSTEMS LTD",
+      "sector": "Railways & Wagons",
+      "entry_date": "2026-11-02 10:26:04",
+      "entry_price": 695.7,
+      "target_1yr_2x": 1391.4,
+      "stop_loss": 591.35,
+      "initial_metrics": {
+        "sales_growth_pct": 12.6,
+        "profit_growth_pct": 67.0,
+        "debt_to_equity": 0.25,
+        "roce_pct": 20.7,
+        "peg_ratio": 0.74,
+        "dcf_1yr_fv": 828.88,
+        "quant_consensus": 587.04,
+        "ml_2x_prob_pct": 40.2,
+        "score": 53.2,
+        "grade": "B"
+      },
+      "current_price": 695.7,
+      "pnl_pct": 0.0,
+      "status": "DUMP_WARNING",
+      "health_status": "DUMP_WARNING",
+      "dump_warnings": [
+        "\u26a0\ufe0f Stan Weinstein Stage-4 Breakdown: Closed below 200-DMA (\u20b9785.5)"
+      ],
+      "last_audited": "2026-11-02 10:26:29",
+      "audit_history": [
+        {
+          "timestamp": "2026-11-02 10:26:29",
+          "cmp": 695.7000122070312,
+          "pnl_pct": 0.0,
+          "health_status": "DUMP_WARNING",
+          "warnings": [
+            "\u26a0\ufe0f Stan Weinstein Stage-4 Breakdown: Closed below 200-DMA (\u20b9785.5)"
+          ]
+        }
+      ]
+    }
+  },
+  "closed_recommendations": {},
+  "last_updated": "2026-11-02 10:26:29"
+}

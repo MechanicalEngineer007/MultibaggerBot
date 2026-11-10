@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multibagger Bot - AI & ML Stock Intelligence Dashboard</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --accent: #38bdf8;
+            --accent-green: #22c55e;
+            --accent-gold: #f59e0b;
+            --accent-red: #ef4444;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border: #334155;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: var(--bg-primary); color: var(--text-primary); padding: 20px; line-height: 1.5; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--border); }
+        h1 { font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { color: var(--text-secondary); margin-top: 6px; font-size: 1rem; }
+        
+        .alert-banner {
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid #ef4444;
+            border-left: 6px solid #ef4444;
+            padding: 16px 20px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            color: #fecaca;
+        }
+        .alert-banner h3 { color: #f87171; margin-bottom: 6px; font-size: 1.1rem; }
+        
+        .filters { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; align-items: center; }
+        .search-input { background: var(--bg-secondary); border: 1px solid var(--border); color: #fff; padding: 10px 16px; border-radius: 8px; min-width: 280px; font-size: 0.95rem; }
+        .btn-filter { background: var(--bg-secondary); border: 1px solid var(--border); color: var(--text-secondary); padding: 10px 16px; border-radius: 8px; cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .btn-filter.active, .btn-filter:hover { background: #0284c7; color: white; border-color: #0284c7; }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 20px; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; transition: transform 0.2s, box-shadow 0.2s; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); border-color: #475569; }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+        .symbol { font-size: 1.35rem; font-weight: 800; color: #fff; }
+        .company-name { font-size: 0.85rem; color: var(--text-secondary); margin-top: 2px; }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; }
+        .badge-aaa { background: rgba(34, 197, 94, 0.2); color: #4ade80; border: 1px solid #22c55e; }
+        .badge-aa { background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #0284c7; }
+        .badge-a { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid #d97706; }
+        
+        .price-row { display: flex; justify-content: space-between; align-items: baseline; margin: 12px 0; padding: 10px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .cmp { font-size: 1.5rem; font-weight: 800; color: #f8fafc; }
+        .targets { text-align: right; }
+        .target-1y { color: #4ade80; font-weight: 700; font-size: 0.95rem; }
+        .target-2y { color: #38bdf8; font-weight: 700; font-size: 0.85rem; }
+        
+        .metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 14px 0; font-size: 0.85rem; }
+        .metric-box { background: rgba(15, 23, 42, 0.6); padding: 8px 12px; border-radius: 6px; }
+        .metric-label { color: var(--text-secondary); font-size: 0.75rem; }
+        .metric-val { font-weight: 700; color: #e2e8f0; margin-top: 2px; }
+        
+        .moat-text { font-size: 0.8rem; color: #cbd5e1; background: rgba(30, 41, 59, 0.8); border-left: 3px solid #38bdf8; padding: 8px 12px; border-radius: 4px; margin-top: 12px; }
+        
+        .btn-kite { display: block; text-align: center; background: #ea580c; color: white; padding: 10px; border-radius: 8px; text-decoration: none; font-weight: 700; margin-top: 14px; transition: 0.2s; }
+        .btn-kite:hover { background: #f97316; }
+        
+        footer { margin-top: 40px; text-align: center; color: var(--text-secondary); font-size: 0.85rem; padding: 20px 0; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Multibagger Bot Intelligence Platform</h1>
+            <p class="subtitle">Institutional Quantitative Screener • 2-Stage DCF • Minervini Trend Template • ML 2x Ensemble</p>
+        </header>
+
+        <div class="alert-banner">
+            <h3>⚠️ PRECAUTIONARY NOTE & IMPORTANT DISCLAIMER</h3>
+            <p><strong>This application is strictly for educational, informational, and research purposes only. It is an algorithmic decision-support tool, NOT an actual prediction app or guaranteed investment service.</strong></p>
+            <p style="margin-top:6px;">Stock market investments are subject to market risks. Past patterns and algorithmic projections (DCF, GBM, ARIMA, ML probabilities) do not guarantee future stock price performance. Never invest funds without independent due diligence. Consult a SEBI-registered financial advisor before placing trades. <strong>Invest at your own risk.</strong></p>
+        </div>
+
+        <div class="filters">
+            <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search stock (e.g. MCX, BSE, SYRMA)..." onkeyup="filterStocks()">
+            <button class="btn-filter active" onclick="setFilter('all', this)">All Stocks</button>
+            <button class="btn-filter" onclick="setFilter('AAA', this)">⭐ AAA Prime</button>
+            <button class="btn-filter" onclick="setFilter('t1', this)">🎯 1-Yr Target &gt; 35%</button>
+            <button class="btn-filter" onclick="setFilter('t2', this)">🚀 2-Yr 2x+ (&gt;100%)</button>
+        </div>
+
+        <div class="grid" id="stocksGrid"></div>
+
+        <footer>
+            <p>Multibagger Bot — Open Source Quantitative Stock Research Engine • MechanicalEngineer007</p>
+            <p style="margin-top:4px; font-size:0.75rem;">Data based on latest calibrated algorithmic run. Invest responsibly.</p>
+        </footer>
+    </div>
+
+    <script>
+        const STOCKS = [{"symbol": "DIXON.NS", "companyName": "Dixon Technologies (India) Ltd", "cmp": 12604.0, "score": 94, "convictionGrade": "\u2b50 AAA Prime Multibagger", "stageStatus": "\ud83d\ude80 Stage-2 ATH Breakout", "target1Year": 17645.0, "target1YearPct": 40.0, "target2Year": 26468.0, "target2YearPct": 110.0, "trailingStopLoss": 11340.0, "riskRewardRatio": 3.98, "salesGrowthCAGR": 38.0, "patGrowthCAGR": 45.0, "debtToEquity": 0.2, "peRatio": 68.0, "pegRatio": 1.5, "promoterHolding": 33.6, "institutionalHolding": 42.1, "sectorTheme": "\u26a1 Electronic Manufacturing Services (EMS)", "moatDescription": "Dominant national champion in electronics manufacturing (Smartphones, LED TVs, Home Appliances) with massive PLI tailwinds, backward integration & sticky MNC client roster.", "sma50": 12150.0, "sma150": 11200.0, "sma200": 10550.0, "fiftyTwoWeekHigh": 12880.0, "fiftyTwoWeekLow": 6450.0, "volumeSurgeRatio": 1.62, "cagr2Year": 44.9, "dcfValue": 16900.0, "gbmTarget": 17800.0, "mcMedian": 17400.0, "mcBull": 21000.0, "mc2xProb": 62.0, "arimaTarget": 13400.0, "dlTarget": 18200.0, "quantConsensus": 17600.0, "opmPct": 26.5, "patGrowthQoQ": 25.2, "patGrowthYoY": 45.0, "earningsMomentum": "\ud83d\udd25 Acceleration Beat", "resultsDate": "Q3: +45% YoY Beat", "piotroskiFScore": 8, "altmanZScore": 5.4, "financialHealthZone": "SAFE_ZONE", "insiderActivity": "FII/DII Net Inflow (+\u20b9840 Cr)", "pledgedPromoterSharesPct": 0.0, "bulkDealsStatus": "Active Institutional Inflow \ud83c\udfdb\ufe0f", "rsi14": 65.8, "rsRating": 96, "isVcpContraction": true, "vcpTightnessScore": 92, "vcpSignal": "\ud83d\udd25 Tight VCP 3-Wave Pivot (<2.8% Risk)", "mlConfidenceScore": 94, "mlModelLabel": "Adaptive ML Consensus (Top: DCF \u2022 93.8% Acc)", "peExpansionTarget": 18200.0, "adtvCrores": 210.0, "circuitBandPct": 20.0, "isNearCircuit": false, "circuitStatusLabel": "\ud83d\udfe2 High Float (\u20b9210 Cr/Day)"}, {"symbol": "TRENT.NS", "companyName": "Trent Ltd (Tata Retail)", "cmp": 3057.5, "score": 91, "convictionGrade": "\u2b50 AAA Prime Multibagger", "stageStatus": "\ud83d\ude80 Stage-2 ATH Breakout", "target1Year": 4280.0, "target1YearPct": 40.0, "target2Year": 6726.0, "target2YearPct": 120.0, "trailingStopLoss": 2750.0, "riskRewardRatio": 3.97, "salesGrowthCAGR": 42.0, "patGrowthCAGR": 65.0, "debtToEquity": 0.15, "peRatio": 88.0, "pegRatio": 1.35, "promoterHolding": 37.0, "institutionalHolding": 44.5, "sectorTheme": "\ud83d\udecd\ufe0f Consumer Retail & Fashion Disrupter", "moatDescription": "Hyper-growth retail powerhouse with Zudio and Westside delivering industry-beating store economics, 50%+ annual footprint expansion, zero debt, and superior ROIC >28%.", "sma50": 2940.0, "sma150": 2720.0, "sma200": 2580.0, "fiftyTwoWeekHigh": 3210.0, "fiftyTwoWeekLow": 1680.0, "volumeSurgeRatio": 1.55, "cagr2Year": 48.3, "dcfValue": 4150.0, "gbmTarget": 4350.0, "mcMedian": 4200.0, "mcBull": 4900.0, "mc2xProb": 59.0, "arimaTarget": 3250.0, "dlTarget": 4400.0, "quantConsensus": 4250.0, "opmPct": 27.2, "patGrowthQoQ": 34.0, "patGrowthYoY": 65.0, "earningsMomentum": "\ud83d\udd25 Acceleration Beat", "resultsDate": "Q3: +65% YoY Beat", "piotroskiFScore": 9, "altmanZScore": 6.2, "financialHealthZone": "SAFE_ZONE", "insiderActivity": "Tata Sons Backing + FII Expansion", "pledgedPromoterSharesPct": 0.0, "bulkDealsStatus": "Active Institutional Inflow \ud83c\udfdb\ufe0f", "rsi14": 64.2, "rsRating": 95, "isVcpContraction": true, "vcpTightnessScore": 90, "vcpSignal": "\ud83d\udd25 Tight VCP 3-Wave Pivot (<3.0% Risk)", "mlConfidenceScore": 93, "mlModelLabel": "Adaptive ML Consensus (Top: Monte Carlo \u2022 92.1% Acc)", "peExpansionTarget": 4400.0, "adtvCrores": 260.0, "circuitBandPct": 20.0, "isNearCircuit": false, "circuitStatusLabel": "\ud83d\udfe2 High Float (\u20b9260 Cr/Day)"}, {"symbol": "ICICIBANK.NS", "companyName": "ICICI Bank Limited", "cmp": 1565.0, "score": 89, "convictionGrade": "\u2b50 AAA Prime Multibagger", "stageStatus": "\ud83d\ude80 Stage-2 ATH Breakout", "target1Year": 2112.75, "target1YearPct": 35.0, "target2Year": 2895.25, "target2YearPct": 85.0, "trailingStopLoss": 1408.5, "riskRewardRatio": 3.5, "salesGrowthCAGR": 24.5, "patGrowthCAGR": 32.0, "debtToEquity": 0.85, "peRatio": 17.5, "pegRatio": 0.55, "promoterHolding": 0.0, "institutionalHolding": 84.8, "sectorTheme": "\ud83c\udfe6 Banking & Financial Giant", "moatDescription": "India's premier private banking titan with peer-leading ROA (>2.3%), pristine asset quality (Net NPA 0.42%), compounding retail credit & digital ecosystem.", "sma50": 1520.4, "sma150": 1445.6, "sma200": 1410.2, "fiftyTwoWeekHigh": 1577.8, "fiftyTwoWeekLow": 1150.0, "volumeSurgeRatio": 1.45, "cagr2Year": 36.0, "dcfValue": 2050.0, "gbmTarget": 2180.0, "mcMedian": 2120.0, "mcBull": 2450.0, "mc2xProb": 48.5, "arimaTarget": 1640.0, "dlTarget": 2150.0, "quantConsensus": 2110.0, "opmPct": 28.5, "patGrowthQoQ": 19.4, "patGrowthYoY": 32.0, "earningsMomentum": "\ud83d\udd25 Acceleration Beat", "resultsDate": "Q3: +32% YoY Beat", "piotroskiFScore": 8, "altmanZScore": 4.1, "financialHealthZone": "SAFE_ZONE", "insiderActivity": "FII/DII Net Inflow (+\u20b91,420 Cr)", "pledgedPromoterSharesPct": 0.0, "bulkDealsStatus": "Institutional Block Accumulation", "rsi14": 62.4, "rsRating": 91, "isVcpContraction": true, "vcpTightnessScore": 89, "vcpSignal": "\ud83d\udd25 Tight VCP 3-Wave Pivot (<3.2% Risk)", "mlConfidenceScore": 92, "mlModelLabel": "Adaptive ML Consensus (Top: Monte Carlo \u2022 91.5% Acc)", "peExpansionTarget": 2150.0, "adtvCrores": 185.0, "circuitBandPct": 20.0, "isNearCircuit": false, "circuitStatusLabel": "\ud83d\udfe2 High Float (\u20b9185 Cr/Day)"}, {"symbol": "TITAN.NS", "companyName": "Titan Company Limited", "cmp": 4990.5, "score": 88, "convictionGrade": "\u2b50 AAA Prime Multibagger", "stageStatus": "\ud83d\ude80 Stage-2 ATH Breakout", "target1Year": 6587.46, "target1YearPct": 32.0, "target2Year": 8982.9, "target2YearPct": 80.0, "trailingStopLoss": 4491.45, "riskRewardRatio": 3.2, "salesGrowthCAGR": 22.8, "patGrowthCAGR": 26.5, "debtToEquity": 0.32, "peRatio": 78.0, "pegRatio": 1.4, "promoterHolding": 52.9, "institutionalHolding": 30.5, "sectorTheme": "\ud83d\udecd\ufe0f Luxury Retail & Jewellery (Tata Group)", "moatDescription": "Undisputed organized jewellery leader (Tanishq, Mia, CaratLane) & watches. Unrivaled Tata brand trust, 22%+ ROCE compounding, and formalization tailwinds.", "sma50": 4850.0, "sma150": 4580.0, "sma200": 4420.0, "fiftyTwoWeekHigh": 5186.7, "fiftyTwoWeekLow": 3400.0, "volumeSurgeRatio": 1.38, "cagr2Year": 34.2, "dcfValue": 6450.0, "gbmTarget": 6800.0, "mcMedian": 6600.0, "mcBull": 7600.0, "mc2xProb": 44.0, "arimaTarget": 5240.0, "dlTarget": 6700.0, "quantConsensus": 6580.0, "opmPct": 16.5, "patGrowthQoQ": 18.2, "patGrowthYoY": 26.5, "earningsMomentum": "\ud83d\udd25 Acceleration Beat", "resultsDate": "Q3: +26% YoY Beat", "piotroskiFScore": 8, "altmanZScore": 5.4, "financialHealthZone": "SAFE_ZONE", "insiderActivity": "Promoter Accumulation (Tata Sons)", "pledgedPromoterSharesPct": 0.0, "bulkDealsStatus": "Institutional Block Accumulation", "rsi14": 59.8, "rsRating": 89, "isVcpContraction": true, "vcpTightnessScore": 86, "vcpSignal": "\ud83d\udd25 Tight VCP 3-Wave Pivot (<4.0% Risk)", "mlConfidenceScore": 90, "mlModelLabel": "Adaptive ML Consensus (Top: Monte Carlo \u2022 90.2% Acc)", "peExpansionTarget": 6700.0, "adtvCrores": 142.0, "circuitBandPct": 20.0, "isNearCircuit": false, "circuitStatusLabel": "\ud83d\udfe2 High Float (\u20b9142 Cr/Day)"}, {"symbol": "MCX.NS", "companyName": "MULTI COMMODITY EXCHANGE", "cmp": 3249.0, "score": 80, "convictionGrade": "AA Grade", "stageStatus": "Stage 2 Markup", "target1Year": 6498.0, "target1YearPct": 100.0, "target2Year": 8934.75, "target2YearPct": 175.0, "trailingStopLoss": 2726.57, "riskRewardRatio": 6.22, "salesGrowthCAGR": 85.3, "patGrowthCAGR": 103.4, "debtToEquity": 0.11, "peRatio": 16.5, "pegRatio": 0.66, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Commodity Exchange", "moatDescription": "Stage 2 Compounder | ROCE 20.7% | Low Debt", "sma50": 3119.04, "sma150": 2924.1, "sma200": 2900.61, "fiftyTwoWeekHigh": 3466.68, "fiftyTwoWeekLow": 2111.85, "volumeSurgeRatio": 1.68, "cagr2Year": 65.8, "dcfValue": 2838.46, "gbmTarget": 6321.27, "mcMedian": 5513.41, "mcBull": 7075.92, "mc2xProb": 41.3, "arimaTarget": 3256.44, "dlTarget": 5584.07, "quantConsensus": 5168.8}, {"symbol": "BSE.NS", "companyName": "BSE LIMITED", "cmp": 3490.0, "score": 77, "convictionGrade": "AA Grade", "stageStatus": "Stage 2 Markup", "target1Year": 6980.0, "target1YearPct": 100.0, "target2Year": 9597.5, "target2YearPct": 175.0, "trailingStopLoss": 3184.62, "riskRewardRatio": 11.43, "salesGrowthCAGR": 64.0, "patGrowthCAGR": 62.1, "debtToEquity": 0.0, "peRatio": 20.5, "pegRatio": 0.82, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Stock Exchange", "moatDescription": "Stage 2 Compounder | ROCE 20.7% | Low Debt", "sma50": 3350.4, "sma150": 3141.0, "sma200": 3387.89, "fiftyTwoWeekHigh": 4233.37, "fiftyTwoWeekLow": 2268.5, "volumeSurgeRatio": 1.59, "cagr2Year": 65.8, "dcfValue": 4075.35, "gbmTarget": 5293.5, "mcMedian": 4640.91, "mcBull": 5928.78, "mc2xProb": 19.0, "arimaTarget": 3487.98, "dlTarget": 5238.48, "quantConsensus": 4665.22}, {"symbol": "ANGELONE.NS", "companyName": "ANGEL ONE LIMITED", "cmp": 290.0, "score": 68, "convictionGrade": "A Grade", "stageStatus": "Stage 2 Markup", "target1Year": 580.0, "target1YearPct": 100.0, "target2Year": 797.5, "target2YearPct": 175.0, "trailingStopLoss": 280.84, "riskRewardRatio": 31.66, "salesGrowthCAGR": 15.4, "patGrowthCAGR": 57.2, "debtToEquity": 1.14, "peRatio": 10.2, "pegRatio": 0.41, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Retail Brokerage", "moatDescription": "Stage 2 Compounder | ROCE 20.3% | Low Debt", "sma50": 278.4, "sma150": 261.0, "sma200": 298.77, "fiftyTwoWeekHigh": 344.81, "fiftyTwoWeekLow": 188.5, "volumeSurgeRatio": 1.4, "cagr2Year": 65.8, "dcfValue": 732.85, "gbmTarget": 372.33, "mcMedian": 318.26, "mcBull": 415.54, "mc2xProb": 11.0, "arimaTarget": 289.98, "dlTarget": 381.16, "quantConsensus": 340.43}, {"symbol": "SYRMA.NS", "companyName": "SYRMA SGS TECHNOLOGY LTD", "cmp": 1512.0, "score": 66, "convictionGrade": "A Grade", "stageStatus": "Stage 2 Markup", "target1Year": 3024.0, "target1YearPct": 100.0, "target2Year": 4158.0, "target2YearPct": 175.0, "trailingStopLoss": 1239.84, "riskRewardRatio": 5.56, "salesGrowthCAGR": 74.5, "patGrowthCAGR": 77.3, "debtToEquity": 0.24, "peRatio": 22.2, "pegRatio": 0.89, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "EMS & Electronics", "moatDescription": "Stage 2 Compounder | ROCE 16.4% | Low Debt", "sma50": 1451.52, "sma150": 1360.8, "sma200": 1318.98, "fiftyTwoWeekHigh": 1769.04, "fiftyTwoWeekLow": 982.8, "volumeSurgeRatio": 0.93, "cagr2Year": 65.8, "dcfValue": 1297.24, "gbmTarget": 3282.61, "mcMedian": 2693.55, "mcBull": 3630.28, "mc2xProb": 50.2, "arimaTarget": 1509.53, "dlTarget": 1977.75, "quantConsensus": 2365.86}, {"symbol": "NETWEB.NS", "companyName": "NETWEB TECH INDIA LTD", "cmp": 4089.3, "score": 65, "convictionGrade": "A Grade", "stageStatus": "\ud83d\udea8 DUMP / EXIT", "target1Year": 8178.6, "target1YearPct": 100.0, "target2Year": 11245.58, "target2YearPct": 175.0, "trailingStopLoss": 3475.91, "riskRewardRatio": 6.67, "salesGrowthCAGR": 335.7, "patGrowthCAGR": 324.1, "debtToEquity": 0.16, "peRatio": 5.0, "pegRatio": 0.2, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "High-End Supercomputing", "moatDescription": "\ud83d\udea8 DUMP WARNING: \u26a0\ufe0f Stan Weinstein Stage-4 Breakdown: Closed below 200-DMA", "sma50": 3925.73, "sma150": 3680.37, "sma200": 3697.78, "fiftyTwoWeekHigh": 5303.82, "fiftyTwoWeekLow": 2658.05, "volumeSurgeRatio": 0.93, "cagr2Year": 65.8, "dcfValue": 3792.2, "gbmTarget": 5158.08, "mcMedian": 3978.15, "mcBull": 5593.83, "mc2xProb": 14.6, "arimaTarget": 4090.32, "dlTarget": 7289.09, "quantConsensus": 5128.91}, {"symbol": "SOLARINDS.NS", "companyName": "SOLAR INDUSTRIES (I) LTD", "cmp": 19438.0, "score": 65, "convictionGrade": "A Grade", "stageStatus": "Stage 2 Markup", "target1Year": 38876.0, "target1YearPct": 100.0, "target2Year": 53454.5, "target2YearPct": 175.0, "trailingStopLoss": 17023.67, "riskRewardRatio": 8.05, "salesGrowthCAGR": 70.3, "patGrowthCAGR": 92.7, "debtToEquity": 0.23, "peRatio": 23.8, "pegRatio": 0.95, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Defense & Explosives", "moatDescription": "Stage 2 Compounder | ROCE 20.7% | Low Debt", "sma50": 18660.48, "sma150": 17494.2, "sma200": 18110.29, "fiftyTwoWeekHigh": 22237.07, "fiftyTwoWeekLow": 12634.7, "volumeSurgeRatio": 1.42, "cagr2Year": 65.8, "dcfValue": 13046.39, "gbmTarget": 28856.28, "mcMedian": 25415.68, "mcBull": 32333.08, "mc2xProb": 17.0, "arimaTarget": 19464.67, "dlTarget": 24377.67, "quantConsensus": 24528.57}, {"symbol": "MOTHERSON.NS", "companyName": "SAMVRDHNA MTHRSN INTL LTD", "cmp": 159.0, "score": 64, "convictionGrade": "A Grade", "stageStatus": "Stage 2 Markup", "target1Year": 318.0, "target1YearPct": 100.0, "target2Year": 437.25, "target2YearPct": 175.0, "trailingStopLoss": 138.43, "riskRewardRatio": 7.73, "salesGrowthCAGR": 16.6, "patGrowthCAGR": 104.2, "debtToEquity": 0.44, "peRatio": 9.2, "pegRatio": 0.37, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Auto Components", "moatDescription": "Stage 2 Compounder | ROCE 20.7% | Low Debt", "sma50": 152.64, "sma150": 143.1, "sma200": 147.27, "fiftyTwoWeekHigh": 172.04, "fiftyTwoWeekLow": 103.35, "volumeSurgeRatio": 1.95, "cagr2Year": 65.8, "dcfValue": 246.06, "gbmTarget": 253.37, "mcMedian": 227.47, "mcBull": 284.15, "mc2xProb": 21.0, "arimaTarget": 158.82, "dlTarget": 206.53, "quantConsensus": 211.55}, {"symbol": "BHEL.NS", "companyName": "BHEL", "cmp": 394.95, "score": 64, "convictionGrade": "A Grade", "stageStatus": "Stage 2 Markup", "target1Year": 789.9, "target1YearPct": 100.0, "target2Year": 1086.11, "target2YearPct": 175.0, "trailingStopLoss": 360.38, "riskRewardRatio": 11.42, "salesGrowthCAGR": 23.8, "patGrowthCAGR": 118.5, "debtToEquity": 0.22, "peRatio": 10.0, "pegRatio": 0.4, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Growth & Manufacturing", "moatDescription": "Stage 2 Compounder | ROCE 12.4% | Low Debt", "sma50": 379.15, "sma150": 355.46, "sma200": 383.38, "fiftyTwoWeekHigh": 453.8, "fiftyTwoWeekLow": 256.72, "volumeSurgeRatio": 0.93, "cagr2Year": 65.8, "dcfValue": 490.26, "gbmTarget": 729.74, "mcMedian": 635.06, "mcBull": 816.64, "mc2xProb": 36.3, "arimaTarget": 395.34, "dlTarget": 582.99, "quantConsensus": 585.78}, {"symbol": "MANKIND.NS", "companyName": "MANKIND PHARMA LIMITED", "cmp": 2481.2, "score": 64, "convictionGrade": "A Grade", "stageStatus": "Stage 2 Markup", "target1Year": 4962.4, "target1YearPct": 100.0, "target2Year": 6823.3, "target2YearPct": 175.0, "trailingStopLoss": 2298.96, "riskRewardRatio": 13.62, "salesGrowthCAGR": 17.3, "patGrowthCAGR": 38.9, "debtToEquity": 0.3, "peRatio": 29.5, "pegRatio": 1.18, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Pharma & OTC", "moatDescription": "Stage 2 Compounder | ROCE 14.9% | Low Debt", "sma50": 2381.95, "sma150": 2233.08, "sma200": 2445.7, "fiftyTwoWeekHigh": 2632.55, "fiftyTwoWeekLow": 1612.78, "volumeSurgeRatio": 1.38, "cagr2Year": 65.8, "dcfValue": 2892.24, "gbmTarget": 2636.69, "mcMedian": 2446.25, "mcBull": 2948.87, "mc2xProb": 1.2, "arimaTarget": 2481.46, "dlTarget": 2565.94, "quantConsensus": 2532.59}, {"symbol": "COFORGE.NS", "companyName": "COFORGE LIMITED", "cmp": 2099.0, "score": 64, "convictionGrade": "A Grade", "stageStatus": "Stage 2 Markup", "target1Year": 4198.0, "target1YearPct": 100.0, "target2Year": 5772.25, "target2YearPct": 175.0, "trailingStopLoss": 1721.18, "riskRewardRatio": 5.56, "salesGrowthCAGR": 54.8, "patGrowthCAGR": 19.2, "debtToEquity": 0.27, "peRatio": 53.5, "pegRatio": 2.14, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Enterprise IT", "moatDescription": "Stage 2 Compounder | ROCE 14.7% | Low Debt", "sma50": 2015.04, "sma150": 1889.1, "sma200": 1831.04, "fiftyTwoWeekHigh": 2111.59, "fiftyTwoWeekLow": 1364.35, "volumeSurgeRatio": 1.76, "cagr2Year": 65.8, "dcfValue": 3021.85, "gbmTarget": 2721.41, "mcMedian": 2356.84, "mcBull": 3043.53, "mc2xProb": 10.6, "arimaTarget": 2101.41, "dlTarget": 1900.71, "quantConsensus": 2270.09}, {"symbol": "HAL.NS", "companyName": "HINDUSTAN AERONAUTICS LTD", "cmp": 4855.0, "score": 58, "convictionGrade": "A Grade", "stageStatus": "\u26a0\ufe0f Caution / Watch", "target1Year": 9710.0, "target1YearPct": 100.0, "target2Year": 13351.25, "target2YearPct": 175.0, "trailingStopLoss": 4437.88, "riskRewardRatio": 11.64, "salesGrowthCAGR": 14.4, "patGrowthCAGR": 14.9, "debtToEquity": 0.16, "peRatio": 58.5, "pegRatio": 2.34, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Defense", "moatDescription": "Defense | High yield pressure", "sma50": 4660.8, "sma150": 4369.5, "sma200": 4721.15, "fiftyTwoWeekHigh": 5131.73, "fiftyTwoWeekLow": 3155.75, "volumeSurgeRatio": 1.25, "cagr2Year": 65.8, "dcfValue": 2810.8, "gbmTarget": 5150.17, "mcMedian": 4784.0, "mcBull": 5758.57, "mc2xProb": 1.1, "arimaTarget": 4854.94, "dlTarget": 5136.16, "quantConsensus": 4981.32}, {"symbol": "KALYANKJIL.NS", "companyName": "KALYAN JEWELLERS IND LTD", "cmp": 505.45, "score": 57, "convictionGrade": "B Grade", "stageStatus": "\ud83d\udea8 DUMP / EXIT", "target1Year": 1010.9, "target1YearPct": 100.0, "target2Year": 1389.99, "target2YearPct": 175.0, "trailingStopLoss": 489.1, "riskRewardRatio": 30.91, "salesGrowthCAGR": 45.7, "patGrowthCAGR": 31.6, "debtToEquity": 0.97, "peRatio": 28.7, "pegRatio": 1.15, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Jewellery Retail", "moatDescription": "\ud83d\udea8 DUMP WARNING: \u26a0\ufe0f Stan Weinstein Stage-4 Breakdown: Closed below 200-DMA", "sma50": 485.23, "sma150": 454.91, "sma200": 520.32, "fiftyTwoWeekHigh": 615.64, "fiftyTwoWeekLow": 328.54, "volumeSurgeRatio": 0.93, "cagr2Year": 65.8, "dcfValue": 822.33, "gbmTarget": 579.25, "mcMedian": 468.36, "mcBull": 637.98, "mc2xProb": 9.2, "arimaTarget": 505.72, "dlTarget": 477.25, "quantConsensus": 507.65}, {"symbol": "PERSISTENT.NS", "companyName": "PERSISTENT SYSTEMS LTD", "cmp": 6051.0, "score": 55, "convictionGrade": "B Grade", "stageStatus": "\ud83d\udea8 DUMP / EXIT", "target1Year": 12102.0, "target1YearPct": 100.0, "target2Year": 16640.25, "target2YearPct": 175.0, "trailingStopLoss": 5255.42, "riskRewardRatio": 7.61, "salesGrowthCAGR": 30.3, "patGrowthCAGR": -26.3, "debtToEquity": 0.07, "peRatio": 83.8, "pegRatio": 3.35, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Cloud & AI Services", "moatDescription": "\ud83d\udea8 DUMP WARNING: \ud83d\udea8 CRITICAL: Profit turned negative (-26.3%)", "sma50": 5808.96, "sma150": 5445.9, "sma200": 5590.87, "fiftyTwoWeekHigh": 6516.93, "fiftyTwoWeekLow": 3933.15, "volumeSurgeRatio": 1.77, "cagr2Year": 65.8, "dcfValue": 2207.37, "gbmTarget": 6719.88, "mcMedian": 6010.86, "mcBull": 7535.85, "mc2xProb": 3.8, "arimaTarget": 6051.65, "dlTarget": 5505.27, "quantConsensus": 6071.92}, {"symbol": "DEEPAKNTR.NS", "companyName": "DEEPAK NITRITE LTD", "cmp": 1531.2, "score": 54, "convictionGrade": "B Grade", "stageStatus": "\u26a0\ufe0f Caution / Watch", "target1Year": 3062.4, "target1YearPct": 100.0, "target2Year": 4210.8, "target2YearPct": 175.0, "trailingStopLoss": 1301.52, "riskRewardRatio": 6.67, "salesGrowthCAGR": 61.8, "patGrowthCAGR": 234.8, "debtToEquity": 0.27, "peRatio": 2.0, "pegRatio": 0.08, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Specialty Chemicals", "moatDescription": "Specialty Chemicals | High yield pressure", "sma50": 1469.95, "sma150": 1378.08, "sma200": 1384.6, "fiftyTwoWeekHigh": 1822.13, "fiftyTwoWeekLow": 995.28, "volumeSurgeRatio": 0.93, "cagr2Year": 65.8, "dcfValue": 4617.37, "gbmTarget": 1403.14, "mcMedian": 1289.87, "mcBull": 1571.54, "mc2xProb": 0.5, "arimaTarget": 1530.97, "dlTarget": 1148.4, "quantConsensus": 1343.1}, {"symbol": "TITAGARH.NS", "companyName": "TITAGARH RAIL SYSTEMS LTD", "cmp": 695.7, "score": 53, "convictionGrade": "B Grade", "stageStatus": "\ud83d\udea8 DUMP / EXIT", "target1Year": 1391.4, "target1YearPct": 100.0, "target2Year": 1913.18, "target2YearPct": 175.0, "trailingStopLoss": 591.35, "riskRewardRatio": 6.67, "salesGrowthCAGR": 12.6, "patGrowthCAGR": 67.0, "debtToEquity": 0.25, "peRatio": 18.5, "pegRatio": 0.74, "promoterHolding": 54.0, "institutionalHolding": 28.0, "sectorTheme": "Railways & Wagons", "moatDescription": "\ud83d\udea8 DUMP WARNING: \u26a0\ufe0f Stan Weinstein Stage-4 Breakdown: Closed below 200-DMA", "sma50": 667.87, "sma150": 626.13, "sma200": 629.1, "fiftyTwoWeekHigh": 892.58, "fiftyTwoWeekLow": 452.21, "volumeSurgeRatio": 1.34, "cagr2Year": 65.8, "dcfValue": 828.88, "gbmTarget": 593.53, "mcMedian": 536.41, "mcBull": 683.64, "mc2xProb": 1.1, "arimaTarget": 696.46, "dlTarget": 521.78, "quantConsensus": 587.04}];
+        let activeFilter = 'all';
+
+        function renderStocks() {
+            const grid = document.getElementById('stocksGrid');
+            const query = document.getElementById('searchInput').value.toUpperCase().trim();
+            grid.innerHTML = '';
+
+            const filtered = STOCKS.filter(s => {
+                const matchQuery = s.symbol.toUpperCase().includes(query) || (s.companyName && s.companyName.toUpperCase().includes(query));
+                if (!matchQuery) return false;
+                if (activeFilter === 'AAA') return s.convictionGrade === 'AAA' || s.score >= 80;
+                if (activeFilter === 't1') return (s.target1YearPct || 0) >= 35;
+                if (activeFilter === 't2') return (s.target2YearPct || 0) >= 100;
+                return true;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 40px; color: #94a3b8;">No stocks matching current search criteria.</div>';
+                return;
+            }
+
+            filtered.forEach(s => {
+                const card = document.createElement('div');
+                card.className = 'card';
+                const badgeClass = s.score >= 80 ? 'badge-aaa' : (s.score >= 65 ? 'badge-aa' : 'badge-a');
+                
+                card.innerHTML = `
+                    <div class="card-header">
+                        <div>
+                            <div class="symbol">${s.symbol}</div>
+                            <div class="company-name">${s.companyName || ''}</div>
+                        </div>
+                        <span class="badge ${badgeClass}">${s.convictionGrade || 'A'} • ${s.score.toFixed(1)}</span>
+                    </div>
+
+                    <div class="price-row">
+                        <div class="cmp">₹${Number(s.cmp).toLocaleString('en-IN', {maximumFractionDigits: 1})}</div>
+                        <div class="targets">
+                            <div class="target-1y">1Y: ₹${Number(s.target1Year).toLocaleString('en-IN', {maximumFractionDigits: 1})} (+${s.target1YearPct}%)</div>
+                            <div class="target-2y">2Y: ₹${Number(s.target2Year).toLocaleString('en-IN', {maximumFractionDigits: 1})} (+${s.target2YearPct}%)</div>
+                        </div>
+                    </div>
+
+                    <div class="metrics-grid">
+                        <div class="metric-box">
+                            <div class="metric-label">Stage-2 Status</div>
+                            <div class="metric-val" style="color: ${s.stageStatus ? '#4ade80' : '#fbbf24'}">${s.stageStatus ? '✓ Stage 2 Active' : 'Consolidating'}</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">DCF Intrinsic Val</div>
+                            <div class="metric-val">₹${Number(s.dcfValue || 0).toLocaleString('en-IN', {maximumFractionDigits: 1})}</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">Sales CAGR / PAT</div>
+                            <div class="metric-val">${s.salesGrowthCAGR}% / ${s.patGrowthCAGR}%</div>
+                        </div>
+                        <div class="metric-box">
+                            <div class="metric-label">Trailing Stop (200DMA)</div>
+                            <div class="metric-val" style="color:#f87171">₹${Number(s.trailingStopLoss || 0).toLocaleString('en-IN', {maximumFractionDigits: 1})}</div>
+                        </div>
+                    </div>
+
+                    ${s.moatDescription ? `<div class="moat-text">💡 <strong>Moat / Catalyst:</strong> ${s.moatDescription}</div>` : ''}
+
+                    <a href="https://kite.zerodha.com/chart/ext/ciq/NSE/${s.symbol.replace('.NS', '')}" target="_blank" class="btn-kite">Open on Zerodha Kite ↗</a>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function setFilter(filter, btn) {
+            activeFilter = filter;
+            document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderStocks();
+        }
+
+        function filterStocks() {
+            renderStocks();
+        }
+
+        renderStocks();
+    </script>
+</body>
+</html>
